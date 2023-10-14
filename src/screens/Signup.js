@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-// import logo from "../../assets/logo.png";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-} from "react-native";
-import { StackScreenProps } from "@react-navigation/stack";
+import { View, Text, TextInput, Image, StyleSheet, Pressable } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+
 
 const auth = getAuth();
 
 function Signup({ navigation }) {
   const [value, setValue] = useState({
+    fullName: "",  // Add fullName and username fields
+    username: "",
     email: "",
     password: "",
     error: "",
@@ -43,69 +37,82 @@ function Signup({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Image
-          source={logo}
-          style={{ width: 100, height: 100, alignSelf: "center" }}
-        />
-        <Text style={styles.title}>Sign Up</Text>
+      <Image source={require('../images/squig1.png')} style={styles.squig1} />
 
-        <View style={styles.inputContainer}>
-          <View style={styles.inputField}>
-            <Icon style={styles.icon} name="email" size={18} color="gray" />
-            <TextInput
-              placeholder="Email"
-              value={value.email}
-              style={styles.input}
-              onChangeText={(text) => setValue({ ...value, email: text })}
-            />
-          </View>
-
-          <View style={styles.inputField}>
-            <Icon style={styles.icon} name="lock" size={18} color="gray" />
-            <TextInput
-              placeholder="Password"
-              style={styles.input}
-              onChangeText={(text) => setValue({ ...value, password: text })}
-              secureTextEntry={true}
-            />
-          </View>
+      <View style={styles.inputContainer}>
+        <View style={styles.inputField}>
+         <Icon style={styles.icon} name="account-edit" size={18} color="white" />
+          <TextInput
+            placeholder="Full Name"
+            value={value.fullName}
+            style={styles.input}
+            onChangeText={(text) => setValue({ ...value, fullName: text })}
+          />
         </View>
 
-        <Pressable style={styles.button} onPress={signUp}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </Pressable>
+        <View style={styles.inputField}>
+          <Icon style={styles.icon} name="account" size={18} color="white" />
+          <TextInput
+            placeholder="Username"
+            value={value.username}
+            style={styles.input}
+            onChangeText={(text) => setValue({ ...value, username: text })}
+          />
+        </View>
 
-        <Text style={styles.signUpText}>
-          Have an account?{" "}
-          <Text
-            style={styles.signUpLink}
-            onPress={() => navigation.navigate("Sign In")}
-          >
-            Sign In
-          </Text>
-        </Text>
+        <View style={styles.inputField}>
+          <Icon style={styles.icon} name="email" size={18} color="white" />
+          <TextInput
+            placeholder="Email"
+            value={value.email}
+            style={styles.input}
+            onChangeText={(text) => setValue({ ...value, email: text })}
+          />
+        </View>
+
+        <View style={styles.inputField}>
+          <Icon style={styles.icon} name="key" size={18} color="white" />
+          <TextInput
+            placeholder="Password"
+            style={styles.input}
+            onChangeText={(text) => setValue({ ...value, password: text })}
+            secureTextEntry={true}
+          />
+        </View>
       </View>
+
+      <Pressable style={styles.button} onPress={signUp}>
+        <Text style={styles.buttonText}>Create Account</Text>
+      </Pressable>
+
+      <Text style={styles.infoText}>Already have an account?</Text>
+      <Text style={styles.signUpText}>
+        Have an account?{" "}
+        <Text
+          style={styles.signUpLink}
+          onPress={() => navigation.navigate("Log In")}
+        >
+          Sign In
+        </Text>
+      </Text>
     </View>
   );
 }
 
-export default Signup;
-
 const styles = StyleSheet.create({
   container: {
-    width: 390,
-    height: 844,
+    flex: 1,
+    marginTop: -420, // Adjust this value to shift content up
     backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 50,
     overflow: "hidden",
-    alignItems: "center",
   },
-  content: {
-    position: "relative",
-    top: 239,
-    justifyContent: "center",
-    alignItems: "center",
+  squig1: {
+    marginLeft: 80,
+    resizeMode: "contain",
+    height: 700,
   },
   title: {
     color: "rgba(0, 0, 0, 0.55)",
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   inputContainer: {
-    marginTop: 1,
+    marginTop: -130,
   },
   inputField: {
     width: 334,
@@ -125,9 +132,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     flexDirection: "row",
     alignItems: "center",
-  },
-  icon: {
-    padding: 10,
+    marginBottom: 12,
   },
   input: {
     flex: 1,
@@ -135,18 +140,21 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
-    color: "gray",
+    color: "white",
   },
   button: {
-    backgroundColor: "white",
-    borderRadius: 50,
+    backgroundColor: "#001427",
+    borderRadius: 10,
     borderWidth: 2,
-    borderColor: "white",
-    padding: 12,
+    borderColor: "#FFFFFF",
+    paddingVertical: 18,
+    paddingHorizontal: 120,
     margin: 4,
+    marginBottom: 19,
+    marginTop: 35,
   },
   buttonText: {
-    color: "black",
+    color: "white",
     fontSize: 12,
     fontFamily: "Poppins",
     fontWeight: "600",
@@ -157,8 +165,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "Poppins",
     textAlign: "center",
+    marginRight: 100, 
+    marginTop: 10, 
+
+  },
+  infoText: {
+    color: "#CBD4D8"
   },
   signUpLink: {
-    color: "blue",
+    color: "rgba(112, 141, 129, 0.83)",
+  },
+  icon: {
+    padding: 10,
   },
 });
+
+export default Signup;

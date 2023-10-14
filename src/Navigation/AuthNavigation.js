@@ -13,14 +13,17 @@ export default function AuthStack() {
       <Stack.Navigator
           screenOptions={{
              cardStyle: {
-            backgroundColor: '#0e1529'
+            backgroundColor: '#FFFFFF'
           },
           headerShown: false
         }}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Sign In" component={Login} />
+        <Stack.Screen name="Log In" component={Login} />
         <Stack.Screen name="Sign Up" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+
+

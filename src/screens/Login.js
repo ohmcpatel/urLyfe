@@ -42,15 +42,11 @@ function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Image
-          source={logo}
-          style={{ width: 100, height: 100, alignSelf: "center" }}
-        />
-        <Text style={styles.title}>Sign In</Text>
+       <Image source={require('../images/word2.png')} style={styles.word2} />
 
         <View style={styles.inputContainer}>
           <View style={styles.inputField}>
-            <Icon style={styles.icon} name="email" size={18} color="gray" />
+            <Icon style={styles.icon} name="email" size={18} color="white" />
             <TextInput
               placeholder="Email"
               value={value.email}
@@ -60,7 +56,7 @@ function Login({ navigation }) {
           </View>
 
           <View style={styles.inputField}>
-            <Icon style={styles.icon} name="lock" size={18} color="gray" />
+            <Icon style={styles.icon} name="lock" size={18} color="white" />
             <TextInput
               placeholder="Password"
               style={styles.input}
@@ -74,6 +70,7 @@ function Login({ navigation }) {
           <Text style={styles.buttonText}>Sign In</Text>
         </Pressable>
 
+        <Text style={styles.infoText2}>Already have an account?</Text>
         <Text style={styles.signUpText}>
           Don't Have an account?{" "}
           <Text style={styles.signUpLink} onPress={() => navigation.navigate("Sign Up")}>
@@ -81,6 +78,7 @@ function Login({ navigation }) {
           </Text>
         </Text>
       </View>
+      <Image source={require('../images/squig2.png')} style={styles.squig2} />
     </View>
   );
 }
@@ -95,10 +93,11 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     overflow: 'hidden',
     alignItems: 'center',
+    marginTop: 2,
   },
   content: {
     position: 'relative',
-    top: 239,
+    top: 180,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -120,6 +119,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 18,
   },
   icon: {
     padding: 10,
@@ -130,18 +130,21 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
-    color: 'gray',
+    color: 'white1212',
   },
   button: {
-    backgroundColor: 'white',
-    borderRadius: 50,
+    backgroundColor: "#001427",
+    borderRadius: 10,
     borderWidth: 2,
-    borderColor: 'white',
-    padding: 12,
+    borderColor: "#FFFFFF",
+    paddingVertical: 18,
+    paddingHorizontal: 145,
     margin: 4,
+    marginBottom: 19,
+    marginTop: 35,
   },
   buttonText: {
-    color: 'black',
+    color: '#FFFFFF',
     fontSize: 12,
     fontFamily: 'Poppins',
     fontWeight: '600',
@@ -152,8 +155,23 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Poppins',
     textAlign: 'center',
+    marginRight: 135,
   },
   signUpLink: {
-    color: 'blue',
+    color: 'rgba(112, 141, 129, 0.83)',
   },
+  word2: {
+    resizeMode: "contain",
+    height: 120,
+  },
+  squig2: {
+    marginTop: 280,
+    marginLeft: 30,
+    resizeMode: "contain",
+    height: 180,
+  },
+  infoText2: {
+    color: "#CBD4D8",
+    marginBottom: 20,
+  }
 });
