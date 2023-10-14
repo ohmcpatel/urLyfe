@@ -1,13 +1,16 @@
 const axios = require('axios');
 
 const data = {
-  userId: 'yourUserId', // Replace with the actual user ID
+  userId: "hfreiru",
+  username: "dhuide",
+  email: "dhjede",
+  fullname: "djhediehd",
 };
 
-axios.post('http://localhost:3000/addUser', data)
+axios.post('http://localhost:4500/addUser', data)
   .then(response => {
-    console.log(response.data);
+    console.log("Response Data:", response.data);
   })
   .catch(error => {
-    console.error(error);
+    console.error("Error:", error);
   });

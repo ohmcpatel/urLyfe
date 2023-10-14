@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   title: {
     color: 'rgba(0, 0, 0, 0.55)',
     fontSize: 12,
-    fontFamily: 'Poppins',
     fontWeight: '600',
   },
   inputContainer: {
@@ -146,14 +145,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 12,
-    fontFamily: 'Poppins',
     fontWeight: '600',
     textAlign: 'center',
   },
   signUpText: {
     color: 'white',
     fontSize: 12,
-    fontFamily: 'Poppins',
     textAlign: 'center',
     marginRight: 135,
   },

@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   // Text styles
   text: {
     color: 'black',
-    fontFamily: 'Open Sans',
     flexWrap: 'wrap',
   },
   title: {
@@ -95,7 +94,6 @@ const styles = StyleSheet.create({
   // Special text styles
   scrapbookText: {
     fontSize: 15,
-    fontFamily: 'Open Sans',
     fontStyle: 'italic',
     fontWeight: '600',
     color: 'white',
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
   // Special text styles
   upcomingEventText: {
     color: 'black',
-    fontFamily: 'Open Sans',
     flexWrap: 'wrap',
     position: 'absolute',
     padding: 10,
@@ -170,6 +167,12 @@ const styles = StyleSheet.create({
     marginTop: -300,
     marginBottom: 100,
     marginLeft: -72,
+  },
+  squig3: {
+    resizeMode: "contain",
+    height: 140,
+    marginBottom: -140,
+    marginLeft: 10
   }
 });
 
@@ -200,6 +203,7 @@ const HomePage = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+       <Image source={require('../images/squig3.png')} style={styles.squig3} />
       <Text style={[styles.text, styles.title]}>urLyfe</Text>
       <Text style={[styles.text, styles.subTitle, { top: 176 }]}>Upcoming Events</Text>
 

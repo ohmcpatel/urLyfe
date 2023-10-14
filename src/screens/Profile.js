@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'black',
     fontSize: 24,
-    fontFamily: 'Open Sans',
     fontWeight: '700',
   },
   input: {

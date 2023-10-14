@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Image, StyleSheet, Pressable } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+const axios = require('axios');
 
 
 const auth = getAuth();
@@ -26,7 +27,15 @@ function Signup({ navigation }) {
 
     try {
       await createUserWithEmailAndPassword(auth, value.email, value.password);
-      navigation.navigate("Sign In");
+      const data = {
+        userId: FirebaseFirestore.auth().currentUser.uid,
+        username: value.username, 
+        email: value.email, 
+        fullName: value.fullName,
+      }
+      console.log(data)
+      axios.post('http://localhost:4500/addUser', data)
+      navigation.navigate("Sign In")
     } catch (error) {
       setValue({
         ...value,
@@ -117,7 +126,6 @@ const styles = StyleSheet.create({
   title: {
     color: "rgba(0, 0, 0, 0.55)",
     fontSize: 12,
-    fontFamily: "Poppins",
     fontWeight: "600",
   },
   inputContainer: {
@@ -156,14 +164,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 12,
-    fontFamily: "Poppins",
     fontWeight: "600",
     textAlign: "center",
   },
   signUpText: {
     color: "white",
     fontSize: 12,
-    fontFamily: "Poppins",
     textAlign: "center",
     marginRight: 100, 
     marginTop: 10, 
