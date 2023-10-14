@@ -18,6 +18,7 @@ export default function HomeStack() {
           },
           headerShown: false
         }} 
+        initialRouteName='Home'
         >
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Scrapbook" component={Scrapbook} />
