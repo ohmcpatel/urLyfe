@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import the FontAwesome icon set
 
 const styles = StyleSheet.create({
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
 
   // Box styles
   grayBox: {
-    width: 73,
-    height: 62,
+    width: 110,
+    height: 110,
     position: 'absolute',
     backgroundColor: '#D9D9D9',
     borderRadius: 10,
@@ -155,65 +155,85 @@ const styles = StyleSheet.create({
     fontFamily: 'Open Sans',
     flexWrap: 'wrap',
     position: 'absolute',
+    padding: 10,
   },
+  clickableArea: {
+    position: 'absolute',
+    left: 73,
+    top: 0,
+    width: 400, // Adjust the width to encompass the entire section
+    height: 174, // Adjust the height to encompass the entire section
+  },
+  scrapButton: {
+    resizeMode: "contain",
+    height: 200,
+    marginTop: -300,
+    marginBottom: 100,
+    marginLeft: -72,
+  }
 });
 
-const HomePage = () => {
-  const events = [1, 2, 4, 5, 6, 6, 2, 3, 12, ];
+const HomePage = ({navigation}) => {
+  const events = [
+    {
+      id: 1,
+      name: 'BBQ',
+      description: 'Description for Event 1',
+      date: '2023-10-20',
+      location: 'Event Location 1',
+    },
+    {
+      id: 2,
+      name: 'PARTY',
+      description: 'Description for Event 2',
+      date: '2023-11-05',
+      location: 'Event Location 2',
+    },
+    {
+      id: 3,
+      name: 'Funtastic super cool awesome time to be alive',
+      description: 'Description for Event 3',
+      date: '2023-12-15',
+      location: 'Event Location 3',
+    },
+  ];
 
   return (
     <View style={styles.container}>
-      <View style={styles.rotatedLine}></View>
       <Text style={[styles.text, styles.title]}>urLyfe</Text>
       <Text style={[styles.text, styles.subTitle, { top: 176 }]}>Upcoming Events</Text>
 
-      <ScrollView horizontal={true} style={{ flexDirection: 'row' }}>
-        {events.map((event, index) => (
-          <View key={event.id} style={[styles.grayBox, { marginLeft: 16, marginRight: 16 }]}>
-            <Text style={styles.upcomingEventText}>Name: {String(event.id)}</Text>
-            <Text style={styles.upcomingEventText}>Name: {String(event.name)}</Text>
-            <Text style={styles.upcomingEventText} numberOfLines={2}>
-              Description: {event.description}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
+      <ScrollView horizontal={true} style={{ marginTop: 210, flexDirection: 'row', marginHorizontal: 30 }}>
+  {events.map(function (event, index) {
+    return (
+      <View>
+      <View key={index} style={[styles.grayBox, { marginRight: 16 }]}>
+        <Text style={styles.upcomingEventText}>{String(event.name)}</Text>
+      </View>
+      <View style={{ backgroundColor: "transparent", marginLeft: 120, width: 0 }}></View>
+      </View>
+    )}
+  )}
+</ScrollView>
 
       <Text style={[styles.text, styles.subTitle, { top: 343 }]}>Your Events</Text>
+
+      <ScrollView horizontal={true} style={{ marginTop: -300, flexDirection: 'row', marginHorizontal: 30 }}>
+  {events.map(function (event, index) {
+    return (
+      <View>
+      <View key={index} style={[styles.grayBox, { marginRight: 16 }]}>
+        <Text style={styles.upcomingEventText}>{String(event.name)}</Text>
+      </View>
+      <View style={{ backgroundColor: "transparent", marginLeft: 120, width: 0 }}></View>
+      </View>
+    )}
+  )}
+</ScrollView>
       <Text style={[styles.text, styles.label]}>explore</Text>
-      <View style={[styles.grayBox, { left: 32, top: 214 }]}></View>
-      <View style={[styles.grayBox, { left: 116, top: 214 }]}></View>
-      <View style={[styles.grayBox, { left: 200, top: 214 }]}></View>
-      <View style={[styles.grayBox, { left: 284, top: 214 }]}></View>
-      <View style={[styles.grayBox, { left: 32, top: 381 }]}></View>
-      <View style={[styles.yellowBox, { left: 73, top: 493 }]}></View>
-      <View style={[styles.redBox, { left: 86.85, top: 493 }]}></View>
-      <View style={[styles.greenBox, { left: 100.67, top: 493.90 }]}></View>
-      <View style={[styles.grayBox, { left: 116, top: 381 }]}></View>
-      <View style={[styles.grayBox, { left: 200, top: 381 }]}></View>
-      <View style={[styles.grayBox, { left: 284, top: 381 }]}></View>
-      <Text style={styles.scrapbookText}>View Your Scrapbook</Text>
-      <View style={styles.whiteBox}>
-        <View style={[styles.blackBox, { left: 7.88, top: 7 }]}></View>
-      </View>
-      <View style={styles.whiteBox}>
-        <View style={[styles.blackBox, { left: 69, top: 787 }]}></View>
-      </View>
-      <View style={styles.containerWithBorder}></View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Icon name="home" size={30} color="black" />
-          <Text>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Icon name="plus" size={30} color="black" />
-          <Text>Create</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Icon name="user" size={30} color="black" />
-          <Text>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate("Scrapbook")}>
+        <Image source={require('../images/scrapButton.png')} style={styles.scrapButton} />
+      </TouchableOpacity>
     </View>
   );
 };

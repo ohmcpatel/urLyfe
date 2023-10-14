@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
-    color: 'white1212',
+    color: 'white',
   },
   button: {
     backgroundColor: "#001427",
